@@ -29,12 +29,9 @@ bacon = 'bacon.cli.entry:main'
 [tool.poetry.dependencies]
 python = "^3.8"
 requests = "^2.24"
-click = "^7.1"            # CLI framework
+click = "^8.0"            # CLI framework
 click-aliases = "^1.0"    # Extends Click with command aliases
-colorama = "^0.4"         # ASCII color lib -- still needed?
-rich = "^9.0"             # ASCII decorator
-alive-progress = "^1.6"   # Progress bars
-cerberus = "^1.3"         # Schema validation
+rich = "^10.6"             # ASCII decorator
 
 [tool.poetry.dev-dependencies]
 ipython = "*"               # Alternative REPL
@@ -49,7 +46,6 @@ pytest-bdd = "*"            # Gherkin support for pytest
 #pylama = "*"                # Linting suite
 #Sphinx = "*"                # Project documentation generator
 flake8 = "*"
-black = "*"
 
 
 # ----------------------------------------------------------------------------------------------------------------------
@@ -62,14 +58,6 @@ profile = "black"
 line_length = 120
 atomic = true
 lines_after_imports = 2
-lines_between_types = 0
-
-# Configure custom sections
-#   Reference: default for "sections" = ["FUTURE", "STDLIB", "THIRDPARTY", "FIRSTPARTY", "LOCALFOLDER"]
-known_aws = ["boto3", "botocore"]
-known_click = ["click"]
-sections = ["FUTURE", "STDLIB", "CLICK", "AWS", "THIRDPARTY", "FIRSTPARTY", "LOCALFOLDER"]
-no_lines_before = ["AWS", "THIRDPARTY"]
 
 
 # ----------------------------------------------------------------------------------------------------------------------
