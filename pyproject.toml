@@ -4,21 +4,22 @@
 name = "bacon"
 version = "0.1.0"
 description = "CLI client to Bacon Ipsum public API."
-authors = ["Jesse Butcher <boweeb@gmail.com>"]
 license = "MIT"
-
-keywords = ["bacon", "http", "api", "lorem", "ipsum"]
-
+authors = ["Jesse Butcher <boweeb@gmail.com>"]
+maintainers = []
+readme = "README.md"
 homepage = "https://github.com/boweeb/bacon"
-repository = "git@github.com:boweeb/bacon.git"
-documentation = "file://./README.md"
-
+repository = "https://github.com/boweeb/bacon"
+documentation = "https://github.com/boweeb/bacon"
+keywords = ["bacon", "http", "api", "lorem", "ipsum"]
 classifiers = [
     "Development Status :: 5 - Production/Stable",
     "Intended Audience :: Developers",
     "Programming Language :: Python :: 3",
-    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.12",
 ]
+packages = [{ include = "bacon", from = "src" }]
+include = [{ path = "tests", format = "sdist" }]
 
 [tool.poetry.scripts]
 bacon = 'bacon.cli.entry:main'
@@ -27,25 +28,44 @@ bacon = 'bacon.cli.entry:main'
 # ----------------------------------------------------------------------------------------------------------------------
 # DEPENDENCIES
 [tool.poetry.dependencies]
-python = "^3.8"
-requests = "^2.24"
-click = "^8.0"            # CLI framework
-click-aliases = "^1.0"    # Extends Click with command aliases
-rich = "^10.6"             # ASCII decorator
+python = "^3.12"
+requests = "^2.31"
+click = "^8.1"
+click-aliases = "^1.0"
+colorama = "^0.4"
+rich = "^13.6"
+alive-progress = "^3.1"
+cerberus = "^1.3"
+returns = "^0.22"
 
-[tool.poetry.dev-dependencies]
-ipython = "*"               # Alternative REPL
-bpython = "*"               # Alternative REPL
-coverage = "*"              # Code coverage report
-pytest = "*"                # Test suite framework
-pytest-runner = "*"         # Test suite runner
-pytest-cov = "*"            # Integrate coverage with tests
-pytest-bdd = "*"            # Gherkin support for pytest
-#pdoc3 = "*"                 # API documentation generator
-#tox = "*"                   # Test environment management
-#pylama = "*"                # Linting suite
-#Sphinx = "*"                # Project documentation generator
-flake8 = "*"
+[tool.poetry.group.dev.dependencies]
+bpython = "*"
+#types-requests = "^2.25"
+
+[tool.poetry.group.test.dependencies]
+coverage = "^7.3"
+pytest = "^7.4"
+pytest-cov = "^4.1"
+faker = "^19.11"
+hypothesis = "^6.88"
+#pytest-bdd = "*"
+
+[tool.poetry.group.lint.dependencies]
+mypy = "^1.6"
+black = "^23.10"
+isort = "^5.12"
+pylint = "^3.0"
+#pylama = "*"
+#flake8 = "*"
+
+[tool.poetry.group.play]
+optional = true
+
+[tool.poetry.group.play.dependencies]
+ipdb = "*"
+snoop = "*"
+birdseye = "*"
+#pdoc3 = "*"
 
 
 # ----------------------------------------------------------------------------------------------------------------------
@@ -59,9 +79,12 @@ line_length = 120
 atomic = true
 lines_after_imports = 2
 
+[tool.pylint.format]
+max-line-length = 120
+
 
 # ----------------------------------------------------------------------------------------------------------------------
 # FIN
 [build-system]
-requires = ["poetry-core>=1.0.0"]
+requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
